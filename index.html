@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Meine Bilder</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<img id="bild" src="bild1.jpg">
+
+<script>
+  const bilder = ["bild1.jpg", "bild2.jpg", "bild3.jpg"];
+  let index = 0;
+
+  document.getElementById("bild").addEventListener("click", () => {
+    index = (index + 1) % bilder.length;
+    document.getElementById("bild").src = bilder[index];
+  });
+</script>
+
+</body>
+</html>
