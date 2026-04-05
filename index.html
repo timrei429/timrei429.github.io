@@ -11,15 +11,30 @@
       align-items: center;
       height: 100vh;
       background-color: black;
+      position: relative;
     }
+
     img {
       max-width: 100%;
       max-height: 100%;
       cursor: pointer;
+      transition: opacity 0.5s ease; /* DAS ist der Fade Effekt */
+      opacity: 1;
+    }
+
+    #hinweis {
+      position: absolute;
+      top: 20px;
+      color: white;
+      font-size: 18px;
+      font-family: Arial, sans-serif;
+      opacity: 0.8;
     }
   </style>
 </head>
 <body>
+
+<p id="hinweis">Für mehr Detail, einfach klicken :)</p>
 
 <img id="bild" src="bild1.png">
 
@@ -27,10 +42,25 @@
   const bilder = ["bild1.png", "bild2.png", "bild3.png", "bild4.png"];
   let index = 0;
 
-  document.getElementById("bild").addEventListener("click", () => {
-    index = (index + 1) % bilder.length;
-    document.getElementById("bild").src = bilder[index];
-  });
+  const img = document.getElementById("bild");
+  const hinweis = document.getElementById("hinweis");
+
+  img.onclick = function() {
+    // Fade out
+    img.style.opacity = 0;
+
+    setTimeout(() => {
+      // Bild wechseln
+      index = (index + 1) % bilder.length;
+      img.src = bilder[index];
+
+      // Fade in
+      img.style.opacity = 1;
+    }, 500); // muss zur CSS transition passen
+
+    // Hinweis ausblenden
+    hinweis.style.display = "none";
+  };
 </script>
 
 </body>
